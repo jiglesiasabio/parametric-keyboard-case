@@ -34,12 +34,14 @@ Cherry switches dimesions:
     } 
 }*/
 
-// Paramters
+
+
+// Parameters
 rows = 4;
 columns = 12;
-switchSide = 14;
-interSwitchMargin = 4; // TODO - set a reasonable value here
-externalMargin = 4;
+switchSide = 14.2;
+interSwitchMargin = 5;
+externalMargin = 5;
 
 plateWidth = columns * (14 + interSwitchMargin) + externalMargin;
 plateHeight = rows * (14 + interSwitchMargin) + externalMargin;
@@ -88,4 +90,31 @@ difference(){
         }     
     }  
 }
+
+// Lower box
+// TODO - Height is too much!
+rotate([0,180,0])
+translate([10, 0, -10])
+
+difference(){
+    cube([plateWidth+plateBoxMargin, plateHeight+plateBoxMargin, 10]);
+    translate([plateBoxMargin/2, plateBoxMargin/2, 2])
+    cube([plateWidth, plateHeight, 12]);
+    
+    bottomBoxScrewPostHeight = 14;
+    
+    translate([boxScrewMargin, boxScrewMargin])
+    cylinder(bottomBoxScrewPostHeight,boxScrewRadius,boxScrewRadius);
+    
+    translate([plateWidth+plateBoxMargin-boxScrewMargin, boxScrewMargin])
+    cylinder(bottomBoxScrewPostHeight,boxScrewRadius,boxScrewRadius);
+    
+    translate([plateWidth+plateBoxMargin-boxScrewMargin, plateHeight+plateBoxMargin-boxScrewMargin])
+    cylinder(bottomBoxScrewPostHeight,boxScrewRadius,boxScrewRadius);
+    
+    translate([boxScrewMargin, plateHeight+plateBoxMargin-boxScrewMargin])
+    cylinder(bottomBoxScrewPostHeight,boxScrewRadius,boxScrewRadius);
+}
+
+
 
